@@ -1,0 +1,76 @@
+EKPENYONG UTIBE VICTOR
+from docx import Document
+
+# Create a Word document
+doc = Document()
+doc.add_heading("Machine Learning Fundamentals II – Week 5 Assignment", level=1)
+
+# Sections to add
+sections_docx = {
+    "Activity 1: Building a Design Matrix": """
+Deliverable: Normalized Design Matrix for Synthetic Dataset
+
+Answer:
+Normalization transforms features to have zero mean and unit variance. This ensures that all features contribute equally during training, prevents dominance of features with large values, and improves gradient descent convergence.
+""",
+    "Activity 2: Calculating Cost Functions": """
+Deliverable: MSE and MAE for Three (w, b) Pairs
+
+Answer:
+MSE squares the errors, making larger errors grow quadratically. This makes the model more sensitive to outliers. MAE treats all errors linearly and is more robust to outliers.
+""",
+    "Activity 3: Implementing Gradient Descent": """
+Deliverable: Optimized (w, b), Final MSE, and MSE Plot
+
+Answer:
+A small learning rate leads to slow convergence, while a large rate might overshoot minima or cause divergence. An optimal learning rate balances speed and stability.
+""",
+    "Activity 4: Applying to Real Data": """
+Deliverable: Record Test MSE and MAE
+
+Answer:
+Real-world data contains more noise, multicollinearity, and unpredictable patterns compared to clean synthetic data. As a result, models may underperform due to complexities or overfitting issues.
+""",
+    "General Questions": """
+1. How does the choice of cost function (MSE vs. MAE) affect optimization?
+Answer:
+MSE provides smoother gradients and is easier to optimize but is sensitive to outliers. MAE is more robust but has constant gradients, which can make optimization harder.
+
+2. What challenges arise when scaling to multiple features?
+Answer:
+Challenges include feature scaling, increased computational cost, risk of overfitting, and multicollinearity. Gradient computation also becomes more complex.
+
+3. How does gradient descent compare to scikit-learn’s built-in LinearRegression?
+Answer:
+Scikit-learn's LinearRegression uses a closed-form solution (normal equation), which is faster for small datasets. Gradient descent is iterative and more flexible for large-scale or online learning.
+""",
+    "Short Report (300–500 words)": """
+Short Report: Linear Regression with Gradient Descent
+
+In this hands-on session, I implemented linear regression using both synthetic and real-world datasets. The primary objective was to understand the role of design matrices, cost functions (MSE and MAE), and gradient descent optimization.
+
+Initially, I built a design matrix using synthetic data (hours studied vs. exam score) and normalized it to improve optimization stability. I extended this approach to the Boston Housing dataset using selected features (e.g., RM and AGE).
+
+For cost function evaluation, I tested multiple (w, b) combinations. MSE consistently penalized larger errors more than MAE, highlighting its sensitivity to outliers. Gradient descent was implemented and tuned with a learning rate of 0.01 for 100 iterations. The final MSE dropped significantly over iterations, confirming convergence.
+
+Applying the model to real data posed additional challenges. Despite normalization, prediction errors were higher due to the complexity of real-world patterns. The test MSE and MAE values were higher than those on synthetic data, emphasizing the importance of feature selection and noise handling.
+
+Challenges:
+Key challenges included selecting the right learning rate and ensuring convergence. I addressed these by experimenting with different rates and observing the MSE plot. Another challenge was handling real-world data variability, which I mitigated through preprocessing and feature normalization.
+
+Suggested Improvement:
+An improvement would be to implement mini-batch gradient descent, which balances performance and computational efficiency compared to full-batch or stochastic methods.
+"""
+}
+
+Kene🦻🏼, [23/06/2025 02:23]
+# Add sections
+for title, content in sections_docx.items():
+    doc.add_heading(title, level=2)
+    for paragraph in content.strip().split('\n'):
+        doc.add_paragraph(paragraph.strip())
+
+# Save document
+docx_path = "/mnt/data/ML_Assignment_Week5_Answers.docx"
+doc.save(docx_path)
+docx_path
